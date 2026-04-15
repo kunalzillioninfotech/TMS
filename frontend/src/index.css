@@ -1,0 +1,374 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Enable dark mode */
+:root {
+    color-scheme: light;
+}
+  
+.dark {
+    color-scheme: dark;
+}
+
+/* DARK TABLE */
+.dark-table .ant-table {
+    background-color: #1f2937 !important; /* gray-800 */
+    color: #fff;
+  }
+  
+  .dark-table .ant-table-thead > tr > th {
+    background-color: #37415170 !important; /* gray-700 */
+    color: #fff !important;
+  }
+  
+  .dark-table .ant-table-tbody > tr > td {
+    background-color: #1f2937 !important;
+    color: #e5e7eb;
+  }
+  
+  .dark-table .ant-table-tbody > tr:hover > td {
+    background-color: #374151 !important;
+  }
+  
+  /* Pagination */
+  .dark-table .ant-pagination-item {
+    background: transparent;
+    border-color: #4b5563;
+  }
+  
+  .dark-table .ant-pagination-item a {
+    color: #fff;
+  }
+  
+  .dark-table .ant-pagination-item-active {
+    background-color: #2563eb;
+    border-color: #2563eb;
+  }
+  
+  /* Input (search box) */
+  .dark .ant-input {
+    background-color: #1f2937;
+    color: #fff;
+    border-color: #4b5563;
+  }
+  
+  .dark .ant-input::placeholder {
+    color: #9ca3af;
+  }
+
+  .dark .ant-input::placeholder {
+    color: #9ca3af;
+  }
+
+  /* Prev / Next buttons */
+.dark-table .ant-pagination-prev .ant-pagination-item-link,
+.dark-table .ant-pagination-next .ant-pagination-item-link {
+  color: #fff !important;
+  background-color: transparent !important;
+  border-color: #4b5563 !important;
+}
+
+/* Icons inside buttons */
+.dark-table .ant-pagination-prev .anticon,
+.dark-table .ant-pagination-next .anticon {
+  color: #fff !important;
+}
+
+/* Disabled state */
+.dark-table .ant-pagination-disabled .ant-pagination-item-link {
+  color: #6b7280 !important; /* gray-500 */
+}
+
+/* Hover state */
+.dark-table .ant-pagination-prev:hover .ant-pagination-item-link,
+.dark-table .ant-pagination-next:hover .ant-pagination-item-link {
+  background-color: #374151 !important; /* gray-700 */
+  color: #fff !important;
+}
+
+/* Password input wrapper */
+.dark .ant-input-affix-wrapper {
+    background-color: #1f2937 !important;
+    border-color: #4b5563 !important;
+    color: #fff !important;
+  }
+  
+  /* Actual input inside password */
+  .dark .ant-input-affix-wrapper input {
+    background-color: transparent !important;
+    color: #fff !important;
+  }
+  
+  /* Placeholder */
+  .dark .ant-input-affix-wrapper input::placeholder {
+    color: #9ca3af !important; /* gray-400 */
+  }
+  
+  /* Eye icon (visibility toggle) */
+  .dark .ant-input-password-icon {
+    color: #d1d5db !important; /* gray-300 */
+  }
+  
+  /* Hover */
+  .dark .ant-input-affix-wrapper:hover {
+    border-color: #6b7280 !important;
+  }
+  
+  /* Focus */
+  .dark .ant-input-affix-wrapper-focused {
+    border-color: #2563eb !important; /* blue-600 */
+    box-shadow: 0 0 0 1px #2563eb !important;
+  }
+
+ /* Main picker wrapper */
+.dark .ant-picker {
+    background-color: #1f2937 !important;
+    border-color: #4b5563 !important;
+    color: #fff !important;
+  }
+  
+  /* Input text (start + end date) */
+  .dark .ant-picker-input > input {
+    color: #fff !important;
+  }
+  
+  /* Placeholder text */
+  .dark .ant-picker-input > input::placeholder {
+    color: #9ca3af !important; /* gray-400 */
+  }
+  
+  /* Calendar icon */
+  .dark .ant-picker-suffix {
+    color: #d1d5db !important; /* gray-300 */
+  }
+  
+  /* Clear (X) icon */
+  .dark .ant-picker-clear {
+    color: #d1d5db !important;
+  }
+  
+  /* Range separator (the dash between dates) */
+  .dark .ant-picker-range-separator {
+    color: #d1d5db !important;
+  }
+  
+  /* Hover */
+  .dark .ant-picker:hover {
+    border-color: #6b7280 !important;
+  }
+  
+  /* Focus */
+  .dark .ant-picker-focused {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 1px #2563eb !important;
+  }
+
+  /* Calendar popup */
+.dark .ant-picker-dropdown {
+    background-color: #1f2937 !important;
+  }
+  
+  /* Panel */
+  .dark .ant-picker-panel {
+    background-color: #1f2937 !important;
+    color: #fff !important;
+  }
+  
+  /* Date cells */
+  .dark .ant-picker-cell {
+    color: #e5e7eb !important;
+  }
+  
+  /* Selected date */
+  .dark .ant-picker-cell-selected .ant-picker-cell-inner {
+    background-color: #2563eb !important;
+    color: #fff !important;
+  }
+  
+  /* Hover date */
+  .dark .ant-picker-cell:hover .ant-picker-cell-inner {
+    background-color: #374151 !important;
+  }
+
+  /* Header (Month & Year text) */
+.dark .ant-picker-header {
+    color: #fff !important;
+  }
+  
+  .dark .ant-picker-header-view {
+    color: #fff !important;
+  }
+  
+  .dark .ant-picker-header button {
+    color: #fff !important;
+  }
+  
+  /* Weekday names (Mon, Tue, etc.) */
+  .dark .ant-picker-content th {
+    color: #d1d5db !important; /* gray-300 */
+  }
+  
+  /* Navigation arrows (prev/next) */
+  .dark .ant-picker-prev-icon,
+  .dark .ant-picker-next-icon,
+  .dark .ant-picker-super-prev-icon,
+  .dark .ant-picker-super-next-icon {
+    color: #fff !important;
+  }
+  
+  /* Hover on header buttons */
+  .dark .ant-picker-header button:hover {
+    background-color: #374151 !important;
+  }
+  
+  /* =========================
+   🌙 INPUT (ANT DESIGN)
+========================= */
+
+html.dark .ant-input,
+html.dark .ant-input-password,
+html.dark .ant-input-affix-wrapper,
+html.dark textarea.ant-input {
+  background-color: #111827 !important; /* gray-900 */
+  color: #e5e7eb !important; /* gray-200 */
+  border: 1px solid #374151 !important; /* gray-700 */
+}
+
+/* Placeholder */
+html.dark .ant-input::placeholder,
+html.dark textarea.ant-input::placeholder {
+  color: #9ca3af !important; /* gray-400 */
+}
+
+/* Focus state */
+html.dark .ant-input:focus,
+html.dark .ant-input-affix-wrapper:focus,
+html.dark .ant-input-affix-wrapper-focused {
+  border-color: #60a5fa !important; /* blue-400 */
+  box-shadow: 0 0 0 1px #60a5fa !important;
+}
+
+/* Disabled */
+html.dark .ant-input[disabled],
+html.dark textarea.ant-input[disabled] {
+  background-color: #1f2937 !important;
+  color: #6b7280 !important;
+}
+
+/* =========================
+   🌙 SELECT (CLOSED)
+========================= */
+
+html.dark .ant-select-selector {
+  background-color: #111827 !important;
+  color: #e5e7eb !important;
+  border: 1px solid #374151 !important;
+}
+
+/* Selected text */
+html.dark .ant-select-selection-item {
+  color: #e5e7eb !important;
+}
+
+/* Placeholder */
+html.dark .ant-select-selection-placeholder {
+  color: #9ca3af !important;
+}
+
+/* Arrow */
+html.dark .ant-select-arrow {
+  color: #e5e7eb !important;
+}
+
+/* Focus / active */
+html.dark .ant-select-focused .ant-select-selector {
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 1px #60a5fa !important;
+}
+
+/* Disabled */
+html.dark .ant-select-disabled .ant-select-selector {
+  background-color: #1f2937 !important;
+  color: #6b7280 !important;
+}
+
+/* =========================
+   🌙 SELECT DROPDOWN (OPEN)
+========================= */
+
+html.dark .ant-select-dropdown {
+  background-color: #1f2937 !important; /* gray-800 */
+  border: 1px solid #374151 !important;
+}
+
+/* Dropdown items */
+html.dark .ant-select-item {
+  color: #e5e7eb !important;
+}
+
+/* Hover item */
+html.dark .ant-select-item-option-active {
+  background-color: #374151 !important;
+}
+
+/* Selected item */
+html.dark .ant-select-item-option-selected {
+  background-color: #2563eb !important; /* blue-600 */
+  color: #ffffff !important;
+}
+
+/* Empty state */
+html.dark .ant-select-item-empty {
+  color: #9ca3af !important;
+}
+
+/* FORCE SELECT INPUT DARK (very important) */
+html.dark .ant-select:not(.ant-select-disabled) .ant-select-selector {
+    background-color: #111827 !important; /* gray-900 */
+    color: #e5e7eb !important;
+    border: 1px solid #374151 !important;
+  }
+  
+  /* Fix text inside select */
+  html.dark .ant-select-selection-item {
+    color: #e5e7eb !important;
+  }
+  
+  /* Fix placeholder */
+  html.dark .ant-select-selection-placeholder {
+    color: #9ca3af !important;
+  }
+  
+  /* Fix arrow icon */
+  html.dark .ant-select-arrow {
+    color: #e5e7eb !important;
+  }
+
+  .dark .ant-select {
+    background-color: #111827;
+  }
+
+  .dark .ant-select-placeholder {
+    color: #9ca3af !important;
+  }
+
+  .dark .ant-select-content {
+    color: #9ca3af !important;
+  }
+
+  .dark .ant-modal-container {
+    background-color: #111827;
+  }
+
+  .dark .ant-modal-title{
+    color: white;
+  }
+
+  .dark .ant-modal-close-x {
+    color: #fff !important;
+  }
+
+  .dark .ant-modal-close .ant-modal-close-x {
+    color: #fff !important;
+  }

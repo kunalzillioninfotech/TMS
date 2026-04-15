@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Enable dark mode */
+:root {
+    color-scheme: light;
+}
+  
+.dark {
+    color-scheme: dark;
+}
