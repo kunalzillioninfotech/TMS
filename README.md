@@ -1,13 +1,13 @@
-⚙️ Backend Setup\
+⚙️ Backend Setup
 
-Follow these steps to run the backend server:\
+Follow these steps to run the backend server:
 
 cd backend\
 npm install\
 node server.js\
-🔐 Environment Variables\
+🔐 Environment Variables
 
-Create a .env file inside the backend/ folder and add the following:\
+Create a .env file inside the backend/ folder and add the following:
 
 PORT=YOUR_PORT\
 DB_HOST=YOUR_DB_HOST\
@@ -19,13 +19,13 @@ CLOUD_NAME=YOUR_CLOUDINARY_CLOUD_NAME\
 CLOUD_API_KEY=YOUR_CLOUDINARY_CLOUD_API_KEY\
 CLOUD_API_SECRET=YOUR_CLOUDINARY_CLOUD_API_SECRET\
 EMAIL_USER=YOUR_EMAIL_USER_FOR_EMAIL_SERVICE\
-EMAIL_PASS=YOUR_EMAIL_PASS_FOR_EMAIL_SERVICE\
+EMAIL_PASS=YOUR_EMAIL_PASS_FOR_EMAIL_SERVICE
 
-⚠️ Important: Never share your .env file or commit it to GitHub.\
+⚠️ Important: Never share your .env file or commit it to GitHub.
 
-💻 Frontend Setup\
+💻 Frontend Setup
 
-To run the frontend:\
+To run the frontend:
 
 cd frontend\
 npm install\
@@ -43,9 +43,9 @@ Use .gitignore to exclude sensitive files:\
 node_modules/\
 .env\
 .env.*\
-🚀 You're Ready!\
+🚀 You're Ready!
 
-Once both servers are running:\
+Once both servers are running:
 
 Backend → runs on your specified PORT\
-Frontend → usually runs on http://localhost:3000\
+Frontend → usually runs on http://localhost:3000
