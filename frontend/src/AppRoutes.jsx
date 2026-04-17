@@ -23,6 +23,7 @@ const Sidebar = ({ onLogout }) => {
     { label: "Manage Users", path: "/manage-users", visibleTo: ["super_admin"] },
     { label: "Reports", path: "/reports", visibleTo: ["super_admin"] },
     { label: "Profile", path: "/profile", visibleTo: ["employee", "super_admin"] },
+    { label: "Ask AI", path: "/ai-assistant", visibleTo: ["employee", "super_admin"] },
   ];
 
   return (

@@ -284,7 +284,6 @@ const Dashboard = () => {
             pagination={{ pageSize: 5 }}
           />
         </motion.div>
-
       </div>
     </Layout>
   );

@@ -10,6 +10,7 @@ import { getToken, onMessage } from "firebase/messaging";
 import { messaging } from "./firebase";
 import { useEffect, useState } from "react";
 import { saveFcmToken } from "./services/notificationApi";
+import AIChat from "./components/AIChat";
 
 function App() {
   const token =
@@ -19,6 +20,9 @@ function App() {
 
   useEffect(() => {
     const requestPermission = async () => {
+      const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+      if (!token) return;
       const permission = await Notification.requestPermission();
   
       if (permission === "granted") {
@@ -63,6 +67,7 @@ function App() {
         <Route path="/manage-users" element={<ManageUsers />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/reports" element={<Reports />} />
+        <Route path="/ai-assistant" element={<AIChat />} />
       </Routes>
     </BrowserRouter>
   );

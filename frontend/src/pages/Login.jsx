@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button, message, Checkbox } from "antd";
 import { MailOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
 import API from "../services/api";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Login = ({ setIsRegister }) => {
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
+  const recaptchaRef = useRef(null);
+  const [captchaToken, setCaptchaToken] = useState(null);
 
   useEffect(() => {
     const remembered = localStorage.getItem("rememberMe") === "true";
@@ -17,11 +20,46 @@ const Login = ({ setIsRegister }) => {
     }
   }, []);
 
+  // const handleLogin = async () => {
+  //   try {
+  //     setLoading(true);
+
+  //     const res = await API.post("/login", form);
+
+  //     if (rememberMe) {
+  //       localStorage.setItem("token", res.data.token);
+  //       localStorage.setItem("rememberMe", "true");
+  //       localStorage.setItem("savedEmail", form.email);
+  //       sessionStorage.removeItem("token");
+  //     } else {
+  //       sessionStorage.setItem("token", res.data.token);
+  //       localStorage.setItem("rememberMe", "false");
+  //       localStorage.removeItem("token");
+  //       localStorage.removeItem("savedEmail");
+  //     }
+
+  //     message.success("Login successful");
+  //     window.location.reload();
+  //   } catch (err) {
+  //     message.error(err.response?.data?.message || "Login failed");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleLogin = async () => {
+    if (!captchaToken) {
+      message.error("Please verify captcha");
+      return;
+    }
+
     try {
       setLoading(true);
 
-      const res = await API.post("/login", form);
+      const res = await API.post("/login", {
+        ...form,
+        captchaToken, // ✅ send token
+      });
 
       if (rememberMe) {
         localStorage.setItem("token", res.data.token);
@@ -41,6 +79,8 @@ const Login = ({ setIsRegister }) => {
       message.error(err.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
+      recaptchaRef.current.reset(); // reset captcha
+      setCaptchaToken(null);
     }
   };
 
@@ -98,7 +138,12 @@ const Login = ({ setIsRegister }) => {
             Forgot password?
           </span>
         </div>
-
+        <ReCAPTCHA
+          sitekey="6LeU4bssAAAAANkcTTNycWSYxObkpjH5UbDDyp6E"
+          ref={recaptchaRef}
+          onChange={(token) => setCaptchaToken(token)}
+          className="flex align-center justify-center mb-2"
+        />
         <Button
           block
           loading={loading}

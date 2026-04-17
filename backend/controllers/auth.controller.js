@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const axios = require("axios");
 const authService = require("../services/auth.service");
 
 exports.register = async (req, res) => {
@@ -13,20 +14,52 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, captchaToken } = req.body;
 
-  const user = await authService.findUserByEmail(email);
+  // ✅ 1. Check captcha token exists
+  if (!captchaToken) {
+    return res.status(400).json({ message: "Captcha required" });
+  }
 
-  if (!user) return res.status(400).json({ message: "User not found" });
+  try {
+    // ✅ 2. Verify captcha with Google
+    const captchaVerify = await axios.post(
+      "https://www.google.com/recaptcha/api/siteverify",
+      null,
+      {
+        params: {
+          secret: process.env.RECAPTCHA_SECRET_KEY,
+          response: captchaToken,
+        },
+      }
+    );
 
-  const match = await bcrypt.compare(password, user.password);
+    if (!captchaVerify.data.success) {
+      return res.status(400).json({ message: "Captcha verification failed" });
+    }
 
-  if (!match) return res.status(400).json({ message: "Wrong password" });
+    // ✅ 3. Your existing login logic (unchanged)
+    const user = await authService.findUserByEmail(email);
 
-  const token = jwt.sign(
-    { id: user.id, role: user.role },
-    process.env.JWT_SECRET
-  );
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
 
-  res.json({ token, user });
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      return res.status(400).json({ message: "Wrong password" });
+    }
+
+    const token = jwt.sign(
+      { id: user.id, role: user.role },
+      process.env.JWT_SECRET
+    );
+
+    return res.json({ token, user });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Captcha error" });
+  }
 };

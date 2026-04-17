@@ -4,7 +4,7 @@ import {jwtDecode} from "jwt-decode";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // Lucide icons
-import { ClipboardList, Users, BarChart2, User, LayoutDashboard, LogOut, Menu } from "lucide-react";
+import { ClipboardList, Users, BarChart2, User, LayoutDashboard, LogOut, Menu, MessageSquare } from "lucide-react";
 import { getProfile } from "../services/userApi";
 
 const Sidebar = ({ onLogout }) => {
@@ -48,6 +48,7 @@ const Sidebar = ({ onLogout }) => {
     { label: "Manage Users", path: "/manage-users", icon: <Users size={18} />, visibleTo: ["super_admin"] },
     { label: "Reports", path: "/reports", icon: <BarChart2 size={18} />, visibleTo: ["super_admin"] },
     { label: "Profile", path: "/profile", icon: <User size={18} />, visibleTo: ["employee", "super_admin"] },
+    { label: "Ask AI", path: "/ai-assistant", icon: <MessageSquare size={18} />, visibleTo: ["employee", "super_admin"] },
   ];
 
   const handleNavigate = (path) => {
