@@ -1,83 +1,16 @@
-// import React, { useEffect, useState } from "react";
-// import { Table, Button } from "antd";
-// import { getUsers } from "../services/userApi";
-// import Layout from "../components/Layout";
-
-// const ManageUsers = () => {
-//   const [users, setUsers] = useState([]);
-//   const [isDark, setIsDark] = useState(
-//     document.documentElement.classList.contains("dark")
-//   );
-
-//   useEffect(() => {
-//     const observer = new MutationObserver(() => {
-//       setIsDark(document.documentElement.classList.contains("dark"));
-//     });
-
-//     observer.observe(document.documentElement, {
-//       attributes: true,
-//       attributeFilter: ["class"],
-//     });
-
-//     return () => observer.disconnect();
-//   }, []);
-
-//   const fetchUsers = async () => {
-//     try {
-//       const res = await getUsers();
-//       setUsers(res.data);
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchUsers();
-//   }, []);
-
-//   const columns = [
-//     { title: "Name", dataIndex: "name", width: 200 },
-//     { title: "Email", dataIndex: "email", width: 300 },
-//     { title: "Role", dataIndex: "role", width: 150 },
-//   ];
-
-//   return (
-//     <Layout>
-//       <div
-//         className={`w-full max-w-full p-3 sm:p-6 rounded-xl ${
-//           isDark ? "bg-gray-800 text-white" : "bg-white text-black"
-//         }`}
-//       >
-//         <h2 className="text-lg sm:text-xl font-bold mb-4">Manage Users</h2>
-
-//         <div className="w-full overflow-x-auto">
-//           <Table
-//             className={isDark ? "dark-table" : ""}
-//             dataSource={users}
-//             rowKey="_id"
-//             columns={columns}
-//             scroll={{ x: "max-content" }}
-//             pagination={{ pageSize: 5 }}
-//           />
-//         </div>
-//       </div>
-//     </Layout>
-//   );
-// };
-
-// export default ManageUsers;
-
-
-import React, { useEffect, useState } from "react";
-import { Table, Tag } from "antd";
+import React, { useEffect, useState, useMemo } from "react";
+import { Table, Tag, Input } from "antd";
 import { Grid } from "antd";
 import { getUsers } from "../services/userApi";
 import Layout from "../components/Layout";
 
 const { useBreakpoint } = Grid;
+const { Search } = Input;
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
   const screens = useBreakpoint();
   const isMobile = !screens.md;
 
@@ -111,6 +44,14 @@ const ManageUsers = () => {
     fetchUsers();
   }, []);
 
+  const filteredUsers = useMemo(() => {
+    return users.filter((user) =>
+      `${user.name} ${user.email}`
+        .toLowerCase()
+        .includes(searchText.toLowerCase())
+    );
+  }, [users, searchText]);
+
   const columns = [
     {
       title: "User",
@@ -126,7 +67,6 @@ const ManageUsers = () => {
       ),
     },
 
-    // Hide email column on mobile
     !isMobile && {
       title: "Email",
       dataIndex: "email",
@@ -140,7 +80,7 @@ const ManageUsers = () => {
       key: "role",
       render: (role) => (
         <Tag color={role === "super_admin" ? "red" : "blue"}>
-          {role?.replace('_', ' ').toUpperCase()}
+          {role?.replace("_", " ").toUpperCase()}
         </Tag>
       ),
     },
@@ -157,9 +97,16 @@ const ManageUsers = () => {
           Manage Users
         </h2>
 
+        <Search
+          placeholder="Search by name or email..."
+          allowClear
+          onChange={(e) => setSearchText(e.target.value)}
+          className="mb-4"
+        />
+
         <Table
           className={isDark ? "dark-table" : ""}
-          dataSource={users}
+          dataSource={filteredUsers}
           rowKey="_id"
           columns={columns}
           pagination={{ pageSize: 5 }}
